@@ -19,7 +19,7 @@
 | :--- | :--- |
 | Name | Hello World |
 | Description | A basic hello world program and git-it lesson |
-| Due Date | 1-Jan-20 |
+| Due Date | 31-Aug-22 |
 | Status | Done |
 | Location | https://github.com/jehalladay/AdvPy-jehalladay/tree/main/project0 |
 | Self Grade | 100/100 |
