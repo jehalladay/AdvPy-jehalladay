@@ -4,7 +4,7 @@
 | Name | Value |
 |:---|:---|
 | **Course** | CSCI310 - Advanced Programming: Python |
-| **Section** | 3 |
+| **Section** | 2 |
 | **Semester** | Fall 2022 |
 | **Student** | James Halladay |
 | **Mav Username**            | jehalladay |
