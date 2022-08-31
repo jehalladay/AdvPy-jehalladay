@@ -26,6 +26,19 @@
 | Notes | completed all the requirements |
 
 
+### Assignment #1: Hangman Game
+
+| Name | Value |
+| :--- | :--- |
+| Name | Hangman |
+| Description | A Hangman game using the MVC design pattern |
+| Due Date |  |
+| Status | In-Progress |
+| Location | https://github.com/jehalladay/AdvPy-jehalladay/tree/main/project1 |
+| Self Grade | N/A |
+| Notes |  |
+
+
 ## References
 
 1. [How to turn in assignments on GitHub](https://docs.google.com/document/d/16mixtVA-dePbWidBzI3JXNW4kFhRyT7XsJgL6GtGvGA/edit?usp=sharing)
