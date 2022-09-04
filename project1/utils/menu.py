@@ -1,7 +1,7 @@
 '''
 Assignment - Project 1: Hangman
-File: display.py
-Description: This program will display the hangman game
+File: menu.py
+Description: This file contains all of the constants used in the game
 James Halladay
 Advanced Programming with Python
 Date: 8/29/2022
@@ -11,11 +11,3 @@ Date: 8/29/2022
 
 *******************************************************************************
 '''
-
-import os
-import sys
-import tkinter as tk
-
-class display(tk.Tk):
-    def __init__(self):
-        pass

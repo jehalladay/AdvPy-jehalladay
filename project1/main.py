@@ -17,3 +17,18 @@ Here we are building a hangman game.  The game will use a MVC design pattern
 
 *******************************************************************************
 '''
+
+from MVC.game import Game
+from MVC.display import Display
+from MVC.controller import Controller
+
+
+def main():
+    game = Game()
+    display = Display()
+    controller = Controller(game, display)
+    controller.run()
+
+
+if __name__ == "__main__":
+    main()

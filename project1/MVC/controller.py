@@ -18,3 +18,18 @@ Here we are building a hangman game.  The game will use a MVC design pattern
 
 *******************************************************************************
 '''
+
+from .game import Game
+from .display import Display
+
+class Controller:
+    def __init__(self, game: Game, display: Display):
+        self.game = game
+        self.display = display
+
+    def run(self):
+        while not self.game.is_over():
+            self.display.draw(self.game)
+            self.game.guess(input("Guess a letter: "))
+
+        self.display.draw(self.game)
