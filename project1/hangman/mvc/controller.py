@@ -33,8 +33,9 @@ class Controller:
 
         @self.app.route('/')
         def index():
-            
+
             return render_template('index.html')
+
 
         @self.app.route('/static/<path:path>') 
         def serve_file(path): 
@@ -44,6 +45,7 @@ class Controller:
             dir_name = os.path.join(self.app.static_folder, dir_end)
 
             return send_from_directory(dir_name, file_name)
+
 
         @self.app.route('/<path:path>')
         def serve_public_file(path):
