@@ -16,10 +16,13 @@
 '''
 import os
 
-from flask import Flask, send_from_directory, render_template
+from flask import (
+    Flask, 
+    send_from_directory, 
+    render_template
+)
 
 from hangman.mvc.model import Game
-from hangman.mvc.router import router
 
 class Controller:
     def __init__(self, name: str, game: Game):
