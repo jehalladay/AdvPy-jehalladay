@@ -14,9 +14,9 @@
             is the controller.
     *******************************************************************************
 '''
+import os
 
-from flask import Flask
-from os import path
+from flask import Flask, send_from_directory, render_template
 
 from hangman.mvc.model import Game
 from hangman.mvc.router import router
@@ -27,11 +27,33 @@ class Controller:
         self.game = game
         self.app = Flask(
             name, 
-            template_folder = path.abspath('mvc/view/build'),
-            static_folder = path.abspath('mvc/view/build')
+            template_folder = os.path.abspath('mvc/view/build'),
+            static_folder = os.path.abspath('mvc/view/build')
         )
 
-        router(self.app)
+        @self.app.route('/')
+        def index():
+            
+            return render_template('index.html')
+
+        @self.app.route('/static/<path:path>') 
+        def serve_file(path): 
+
+            file_name = path.split('/')[-1]
+            dir_end = '/'.join(['static', *path.split('/')[:-1]])
+            dir_name = os.path.join(self.app.static_folder, dir_end)
+
+            return send_from_directory(dir_name, file_name)
+
+        @self.app.route('/<path:path>')
+        def serve_public_file(path):
+
+            file_name = path.split('/')[-1]
+            dir_end = '/'.join(path.split('/')[:-1])
+            dir_name = os.path.join(self.app.static_folder, dir_end)
+
+            return send_from_directory(dir_name, file_name)
+
 
     def run(self):
         self.app.run(port = '4999', debug = True)

@@ -24,6 +24,25 @@ def router(app: Flask):
     def index():
         return render_template('index.html')
 
+    @app.route('/static/<path:path>') 
+    def serve_file(path): 
+
+
+        file_name = path.split('/')[-1]
+        dir_end = '/'.join(['static', *path.split('/')[:-1]])
+        dir_name = os_path.join(app.static_folder, dir_end)
+
+        return send_from_directory(dir_name, file_name)
+
+    @app.route('/<path:path>')
+    def serve_public_file(path):
+        file_name = path.split('/')[-1]
+        dir_end = '/'.join(path.split('/')[:-1])
+        dir_name = os_path.join(app.static_folder, dir_end)
+
+        return send_from_directory(dir_name, file_name)
+
+
     # @app.route("/favicon.ico")
     # def favicon():
     #     """ 
@@ -56,25 +75,6 @@ def router(app: Flask):
     #         'logo192.png', 
     #         mimetype = 'image/png'
     #     )
-
-    @app.route('/static/<path:path>') 
-    def serve_file(path): 
-
-
-        file_name = path.split('/')[-1]
-        dir_end = '/'.join(['static', *path.split('/')[:-1]])
-        dir_name = os_path.join(app.static_folder, dir_end)
-
-        return send_from_directory(dir_name, file_name)
-
-    @app.route('/<path:path>')
-    def serve_public_file(path):
-        file_name = path.split('/')[-1]
-        dir_end = '/'.join(path.split('/')[:-1])
-        dir_name = os_path.join(app.static_folder, dir_end)
-
-        return send_from_directory(dir_name, file_name)
-
 
     # @app.route('/game') 
     # def game():
