@@ -1,0 +1,10 @@
+query performDefaultAction {
+  performAction(action: "default_action") {
+    success
+    state
+    errors
+    time
+    method
+    previousInput
+  }
+}

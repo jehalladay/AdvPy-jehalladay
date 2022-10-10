@@ -12,6 +12,15 @@
     *******************************************************************************
 '''
 
+from typing import (
+    Any,
+    Dict,
+    List,
+    Tuple,
+)
+
+from enum import Enum
+
 # database constants
 
 DB_NAME = "hangman.db"
@@ -45,7 +54,7 @@ UTILITY_DIR = 'utils'
 
 WORD_FILE = 'words.json'
 
-# game constants
+# Model constants
 
 DEFAULT_PLAYER_NAME = 'player'
 
@@ -57,37 +66,56 @@ DEFAULT_MAX_SCORE = 7
 
 DEFAULT_DIFFICULTY = 5
 
-# menu constants
-
-WELCOME_MESSAGE = '''
-Welcome to Hangman!
-'''
-
-
-OPTION_POS = 0
-
-OPTION_DESC = 1
-
-PLAY = (
-    'a',
-    'Play a new game'
-)
-
-QUIT = (
-    'b',
-    'Quit the game'
-)
-
-STATUS = (
-    'c',
-    'Display status of the current player'
-)
-
-CREATE = (
-    'd',
-    'Create a new player'
-)
+Result = Tuple[bool, str]
 
 # word constants
 
 WORD_LENGTH = 'word_length'
+
+
+# graphql constants
+
+Field = str
+Message = str or bool
+
+class ResponseField(Enum):
+    '''
+        This class contains the response field names
+    '''
+    
+    data       : Field = 'data'
+    errors     : Field = 'errors'
+    success    : Field = 'success'
+    state      : Field = 'state'
+    time       : Field = 'time'
+    method     : Field = 'method'
+    input      : Field = 'input'
+    name       : Field = 'name'
+    wins       : Field = 'wins'
+    losses     : Field = 'losses'
+    missed     : Field = 'missed'
+    message    : Field = 'message'
+    word       : Field = 'word'
+    guessedWord: Field = 'guessedWord'
+
+Response = Dict[ResponseField, Any]
+
+
+class MenuItems(Enum):
+    '''
+        This class contains the menu item names
+    '''
+
+    PLAY_GAME = 'play'
+    QUIT_GAME = 'quit'
+    NEW_PLAYER = 'new'
+
+
+class GameStates(Enum):
+    '''
+        This class contains the different 
+    '''
+
+    PLAYING = 'playing'
+    WIN = 'win'
+    LOSE = 'lose'

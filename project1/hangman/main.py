@@ -16,8 +16,7 @@
 
 from utils.import_path import *
 
-from hangman.mvc.model import Game
-from hangman.mvc.display import Display
+from hangman.mvc.model import Model
 from hangman.mvc.controller import Controller
 
 from hangman.utils.constants import (
@@ -31,15 +30,14 @@ from hangman.utils.constants import (
 
 
 def main():
-    game = Game(
+    model = Model(
         DEFAULT_PLAYER_NAME,
         DB_NAME,
         DEFAULT_WINS,
         DEFAULT_LOSSES,
-        DEFAULT_MAX_SCORE,
-        DEFAULT_DIFFICULTY
+        difficulty = DEFAULT_DIFFICULTY
     )
-    controller = Controller(__name__, game)
+    controller = Controller(__name__, model)
     controller.run()
 
 

@@ -16,8 +16,11 @@
 from json import load as load_json
 from os import path
 from random import randint
+from typing import Tuple
 
-from hangman.utils.functions import validate_game_input
+from hangman.utils.functions import (
+    validate_model_input
+)
 
 from hangman.utils.database import (
     check_for_record,
@@ -34,22 +37,23 @@ from hangman.utils.constants import (
     UTILITY_DIR,
     WORD_FILE,
     WORD_LENGTH,
-    ColumnNames
+    ColumnNames,
+    GameStates,
+    Result
 )
 
 
-class Game():
-    def __init__(self, name: str, db_name: str, wins: int, losses: int, max_score: int, difficulty: int = 5):
-        validate_game_input(name, db_name, wins, losses, max_score, difficulty)
+class Model():
+    def __init__(self, name: str, db_name: str, wins: int, losses: int, difficulty: int = 5):
+        validate_model_input(name, db_name, wins, losses, difficulty)
 
         self.name = name
         self.new_word(difficulty)
-        self.guessed_word = ['_' for _ in range(len(self.word))]
+        self.guessed_word: list = ['_' for _ in range(len(self.word))]
         self.wins = wins
         self.losses = losses
-        self.max_score = max_score
         self.difficulty = difficulty
-        self.guesses = 0
+        self.missed = 0
         self.db_name = db_name
         self.letters = []
 
@@ -66,7 +70,7 @@ class Game():
 
     def save_game(self):
         '''
-        This function will save the game
+        This function will save the game after deleting any old records for the player
         '''
 
         conn = connect_to_db(self.db_name)
@@ -88,9 +92,9 @@ class Game():
         conn.close()
 
 
-    def load_game(self, name: str):
+    def load_game(self, name: str) -> Result:
         '''
-            This function will load the wins and losses of the player
+            This function will load the wins and losses of the player if they exist
         '''
 
         conn = connect_to_db(self.db_name)
@@ -103,10 +107,9 @@ class Game():
             result = cursor.fetchone()
             
             self.name = name
-            self.wins = result[1]
-            self.losses = result[2]
-            self.score = 0
-            self.guesses = 0
+            self.wins = int(result[1])
+            self.losses = int(result[2])
+            self.missed = 0
 
             status = True
             message = f'Welcome back {name}! Your wins: {self.wins} and losses: {self.losses}'
@@ -141,30 +144,31 @@ class Game():
         self.word = words[index]
 
 
-    def new_game(self, difficulty: int or None = None, max_score: int or None = None):
+    def new_game(self, difficulty: int or None = None):
         '''
             This function will start a new game
         '''
 
-        if self.word != self.guessed_word:
-            self.losses += 1
-        else:   
+        print(f'Word: {self.word.lower()}')
+        print(f'Guessed Word: {"".join(self.guessed_word)}')
+        print(self.word.lower() == ''.join(self.guessed_word))
+
+        if self.word.lower() == ''.join(self.guessed_word):
             self.wins += 1
+        else:   
+            self.losses += 1
 
         if difficulty is not None:
             self.difficulty = difficulty
 
-        if max_score is not None:
-            self.max_score = max_score
-
         self.new_word(self.difficulty)
         self.guessed_word = ['_' for _ in range(len(self.word))]
         
-        self.guesses = 0
+        self.missed = 0
         self.letters = []
 
 
-    def new_player(self, name: str):
+    def new_player(self, name: str) -> Result:
         '''
             This function will start a new player
         '''
@@ -177,12 +181,13 @@ class Game():
                 
         else:
             self.name = name
-            self.word = self.new_word(5)
+            self.new_word(5)
+            self.letters = []
+            self.guessed_word = ['_' for _ in range(len(self.word))]
 
             self.wins = 0
             self.losses = 0
-            self.max_score = 7
-            self.guesses = 0
+            self.missed = 0
 
             status = True
             message = f'Welcome {name}!'
@@ -191,6 +196,60 @@ class Game():
 
         return (status, message)
 
+
+    def current_guessed_word(self):
+        '''
+            This function will change the current guessed_word based on the
+                current letters guessed
+        '''
+        guessed_word = []
+            
+        for i in self.word.lower():
+            if i in self.letters:
+                guessed_word.append(i)
+            else:
+                guessed_word.append('_') 
+
+        self.guessed_word = guessed_word
+
+
+    def guess(self, char: str) -> bool:
+        '''
+            This function will guess a letter
+        '''
+
+        new_letter = True
+
+        if char in self.letters:
+            new_letter = False
+        else:
+            self.letters.append(char)
+            if char not in self.word.lower():
+                self.missed += 1
+
+        self.current_guessed_word()
+
+        return new_letter
+        
+    def can_guess(self) -> bool:
+        '''
+            This function will check if the player can guess again
+        '''
+
+        return self.missed < 6 and self.word.lower() != ''.join(self.guessed_word)
+
+    
+    def game_state(self) -> GameStates:
+        '''
+            This function will return the current game state
+        '''
+
+        if self.word.lower() == ''.join(self.guessed_word):
+            return GameStates.WIN
+        elif self.missed >= 6:
+            return GameStates.LOSE
+        else:
+            return GameStates.PLAYING
 
 
 if __name__ == "__main__":

@@ -1,0 +1,11 @@
+
+query testGetState {
+  getState {
+    success
+    state
+    errors
+    time
+    method
+    previousInput
+  }
+}

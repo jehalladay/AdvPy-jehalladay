@@ -23,7 +23,7 @@ SAMPLE_GUESS_WORDS = [
 SAMPLE_DB_NAMES = [
     'test1.db',
     'test2.db',
-    'test3.db'
+    'test3.db' # this db will never have data saved to it
 ]
 
 SAMPLE_GAME_WINS = [
@@ -36,4 +36,33 @@ SAMPLE_GAME_LOSSES = [
     1,
     2,
     3
+]
+
+ALPHABET = [
+    'A',
+    'B',
+    'C',
+    'D',
+    'E',
+    'F',
+    'G',
+    'H',
+    'I',
+    'J',
+    'K',
+    'L',
+    'M',
+    'N',
+    'O',
+    'P',
+    'Q',
+    'R',
+    'S',
+    'T',
+    'U',
+    'V',
+    'W',
+    'X',
+    'Y',
+    'Z'
 ]

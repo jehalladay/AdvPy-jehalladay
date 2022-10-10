@@ -1,0 +1,30 @@
+type StateResult {
+  success: Boolean!
+  state: String!
+  name: String
+  word: String
+  guessedWord: String
+  wins: Int
+  losses: Int
+  missed: Int!
+  time: String
+  method: String
+  input: String
+  message: [String]
+  errors: [String]
+}
+
+type Query {
+  getState: StateResult!
+}
+
+type Mutation {
+  performAction(action: String!): StateResult!
+  performDefaultAction: StateResult!
+  startGame: StateResult!
+  submitUsername(username: String!): StateResult!
+  menuSelection(selection: String!): StateResult!
+  submitDifficulty(difficulty: Int!): StateResult!
+  terminate: StateResult!
+  submitGuess(guess: String!): StateResult!
+}
