@@ -299,7 +299,7 @@ def test_model_current_guessed_word_with_correct_letters():
 
     guessed_word = ''.join(model.guessed_word)
 
-    assert guessed_word == model.word
+    assert guessed_word == model.word.lower()
 
 
 def test_model_current_guessed_word_with_no_letters():

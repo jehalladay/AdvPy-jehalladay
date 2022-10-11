@@ -46,10 +46,7 @@ export default class App extends Component {
     render() {
         return (
             <div className="App">
-                <Controller api={this.api} state={this.state} setState={this.setState}>
-                </Controller>
-                {/* <header className="App-header">
-                </header> */}
+                <Controller api={this.api} state={this.state} setState={this.setState}/>
             </div>
         );
     }

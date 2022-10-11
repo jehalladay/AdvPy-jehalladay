@@ -92,7 +92,6 @@ export function Controller(props: ControllerProps) {
     return (
         <div>
             {child}
-            {props.children}
         </div>
     );
 }

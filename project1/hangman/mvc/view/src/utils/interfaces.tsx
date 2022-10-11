@@ -35,7 +35,7 @@ export interface ControllerProps {
     api: IApi;
     state: StateResult;
     setState: (state: StateResult) => void;
-    children: ReactNode;
+    // children: ReactNode;
 };
 
 export interface State extends PlayerStats {
