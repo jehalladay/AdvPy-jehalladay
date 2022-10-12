@@ -32,11 +32,11 @@
 | :--- | :--- |
 | Name | Hangman |
 | Description | A Hangman game using the MVC design pattern |
-| Due Date |  |
-| Status | In-Progress |
+| Due Date | 12-Oct-22 |
+| Status | Done |
 | Location | https://github.com/jehalladay/AdvPy-jehalladay/tree/main/project1 |
-| Self Grade | N/A |
-| Notes |  |
+| Self Grade | 100/100 |
+| Notes | [Project Run and Build instructions](https://github.com/jehalladay/AdvPy-jehalladay/blob/main/project1/README.md) |
 
 
 ## References
