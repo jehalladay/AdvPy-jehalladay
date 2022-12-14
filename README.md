@@ -83,7 +83,7 @@
 Total tests: 18
 
  There are tests run for two of the problems using the pytest suite built on top of unittest. Screenshots of successful tests and submissions are included in the final directory.
-|
+
 
 
 ## References
