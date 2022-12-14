@@ -55,7 +55,32 @@
  - ICPC Tutorial: 3.4
  - Vauvau: 2.2
 
+ Total tests: 52
+
  There are tests run for each problem using the pytest suite built on top of unittest. Screenshots of successful tests and submissions are included in the project2 directory.
+|
+
+
+
+### Assignment #2: Final Project
+
+| Name | Value |
+| :--- | :--- |
+| Name | Kattis Problems -- above 2.1 difficulty |
+| Description | Solving 3 problems of at least 2.1 difficulty on Kattis |
+| Due Date | 14-Dec-22 |
+| Status | Done |
+| Location | https://github.com/jehalladay/AdvPy-jehalladay/tree/main/final |
+| Self Grade | 90/100 |
+| Notes | 
+ - A Different Problem: 2.9
+ - Eating Out: 3.3
+ - Warehouse: 2.2
+
+
+Total tests: 18
+
+ There are tests run for two of the problems using the pytest suite built on top of unittest. Screenshots of successful tests and submissions are included in the final directory.
 |
 
 
