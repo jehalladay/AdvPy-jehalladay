@@ -49,7 +49,8 @@
 | Status | Done |
 | Location | https://github.com/jehalladay/AdvPy-jehalladay/tree/main/project2 |
 | Self Grade | 90/100 |
-| Notes | 
+
+### Notes:
  - Falling Apart: 1.9
  - Grand Adventure: 2.0
  - ICPC Tutorial: 3.4
@@ -58,7 +59,7 @@
  Total tests: 52
 
  There are tests run for each problem using the pytest suite built on top of unittest. Screenshots of successful tests and submissions are included in the project2 directory.
-|
+
 
 
 
@@ -71,8 +72,9 @@
 | Due Date | 14-Dec-22 |
 | Status | Done |
 | Location | https://github.com/jehalladay/AdvPy-jehalladay/tree/main/final |
-| Self Grade | 90/100 |
-| Notes | 
+| Self Grade | 100/100 |
+
+### Notes:
  - A Different Problem: 2.9
  - Eating Out: 3.3
  - Warehouse: 2.2
